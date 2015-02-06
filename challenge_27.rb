@@ -9,7 +9,7 @@ class PrimeConsecutive #So slow - it's been a long day(Update: seemeingly superf
 	def sieve_of_eratosthenes(array,upper) #Recycled from challenge 21
 	    search_range = (3..upper)
 	    array = search_range.step(2).to_a.insert(0,2)
-	    for counter in (4..array.last) , as always
+	    for counter in (4..array.last)
 	      array = array.delete_if { |number| number % counter == 0 && number > counter }
 	    end
 	    array
