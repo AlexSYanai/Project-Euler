@@ -9,7 +9,7 @@ class Pandigital
   def find_products
     (2..100).each do |x|
       start = (x<9) ? 1234 : 123
-      (start..(10000/x)).each do |y|
+      (start..(10000/x-2)).each do |y|
         current_product = x*y
         converted = current_product.to_s + x.to_s + y.to_s
         product_array << current_product unless product_array.include?(current_product) if is_pandigital?(converted)
