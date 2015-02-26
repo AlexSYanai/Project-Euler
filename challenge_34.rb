@@ -11,7 +11,7 @@ class DigitFactorials
   end
 
   def find_digit_factorial # Incidentally, there are only 2. Cool!
-    (3..(factorials.last*7)).each { |num| @fact_sum += num if is_digit_factorial?(num) }
+    (3..(factorials.last)).each { |num| @fact_sum += num if is_digit_factorial?(num) }
   end
 
   private
