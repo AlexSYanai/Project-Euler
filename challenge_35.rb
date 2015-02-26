@@ -1,80 +1,43 @@
-require 'pry'
-class CircularPrime
-  attr_accessor :prime_array, :grouped_primes, :circular_primes
-  # attr_reader   :search_range
+class CircularPrime #Slow bruteforce but effective and easily runs under a minute
+  attr_accessor :prime_array, :circular_primes, :finish
+  attr_reader   :finish
 
-  def initialize#(finish)
-    # @search_range = (11..finish)
-    @prime_array = []#(2..1000000).to_a#.insert(0,2)
+  def initialize(finish)
+    @finish = finish-2
+    @prime_array = []
     @circular_primes = [2,3,5,7,11]
   end
 
   def find_circular
     split = prime_array.map { |num| num.to_s.split("") }
-    for i in 2..6
-      temp = split.select { |el| el.length == i }
-      until temp == nil || temp.empty?
-        idk = temp.pop
-        unless idk.include?("2") || idk.include?("5") || idk.include?("0") || idk.include?("6") || idk.include?("4") || idk.include?("8")
-          if i == 2 && temp.include?(idk.rotate)
-            @circular_primes << [idk.join("").to_i,idk.rotate.join("").to_i]
-          elsif i == 3 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2))
-            @circular_primes << [idk.join("").to_i,idk.rotate.join("").to_i,idk.rotate(2).join("").to_i]
-          elsif i == 4 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3))
-            @circular_primes << [idk.join("").to_i,idk.rotate.join("").to_i,idk.rotate(2).join("").to_i,idk.rotate(3).join("").to_i]
-          elsif i == 5 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3)) && temp.include?(idk.rotate(4))
-            @circular_primes << [idk.join("").to_i,idk.rotate.join("").to_i,idk.rotate(2).join("").to_i,idk.rotate(3).join("").to_i,idk.rotate(4).join("").to_i]
-          elsif i == 6 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3)) && temp.include?(idk.rotate(4)) && temp.include?(idk.rotate(5))
-            @circular_primes << [idk.join("").to_i,idk.rotate.join("").to_i,idk.rotate(2).join("").to_i,idk.rotate(3).join("").to_i,idk.rotate(4).join("").to_i,idk.rotate(5).join("").to_i]
-          else
-            next
-          end
-        end
+    until split == nil || split.empty?
+      current = split.pop  #Removing evens and 5 since any number containing them will have a circular number that's not prime
+      unless current.include?("0") || current.include?("2") || current.include?("4") || current.include?("5") || current.include?("6") || current.include?("8")
+        temp = []
+        temp << [current.join("").to_i,current.rotate.join("").to_i] if split.include?(current.rotate)
+        temp << current.rotate(2).join("").to_i if temp.flatten.length == 2 && split.include?(current.rotate(2))
+        temp << current.rotate(3).join("").to_i if temp.flatten.length == 3 && split.include?(current.rotate(3))
+        temp << current.rotate(4).join("").to_i if temp.flatten.length == 4 && split.include?(current.rotate(4))
+        temp << current.rotate(5).join("").to_i if temp.flatten.length == 5 && split.include?(current.rotate(5))
+        @circular_primes << temp if temp.flatten.length == current.length
       end
     end
   end
 
-  def is_circular?(value)
-
-  end
-
-  def sieve_of_eratosthenes
-    for i in 0..1000000-2
+  def sieve_of_eratosthenes #Using only iteration => Ruby delete_if method slowed things down too much
+    for i in 0..finish
       prime_array[i] = i+2
     end
 
     index = 0
     while prime_array[index]**2 <= prime_array.last
-      prime = prime_array[index]
-      @prime_array = prime_array.select { |x| x == prime || x%prime != 0 }
+      @prime_array = prime_array.select { |x| x == prime_array[index] || x % prime_array[index] != 0 }
       index += 1
     end
   end
 end
 
-euler = CircularPrime.new#(1000000)
+euler = CircularPrime.new(1000000)
 euler.sieve_of_eratosthenes
-# euler.group_by_length
 euler.find_circular
-p euler.circular_primes#.flatten.sort#.length
-# grouped_primes.each do |key1,value|
-#   temp = value.map { |num| num.to_s.split("") }
-#   until temp.empty?
-#     idk = temp.pop
-#     unless idk.include?("2") || idk.include?("5") || idk.include?("0")
-#       if key1 == 2 && temp.include?(idk.rotate)
-#         @circular_primes << [idk.join("").to_i,temp[temp.find_index(idk.rotate)].join("").to_i]
-#       elsif key1 == 3 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2))
-#         @circular_primes << [idk.join("").to_i,temp[temp.find_index(idk.rotate)].join("").to_i,temp[temp.find_index(idk.rotate(2))].join("").to_i]
-#       elsif key1 == 4 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3))
-#         @circular_primes << [idk.join("").to_i,temp[temp.find_index(idk.rotate)].join("").to_i,temp[temp.find_index(idk.rotate(2))].join("").to_i,temp[temp.find_index(idk.rotate(3))].join("").to_i]
-#       elsif key1 == 5 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3)) && temp.include?(idk.rotate(4))
-#         @circular_primes << [idk.join("").to_i,temp[temp.find_index(idk.rotate)].join("").to_i,temp[temp.find_index(idk.rotate(2))].join("").to_i,temp[temp.find_index(idk.rotate(3))].join("").to_i,temp[temp.find_index(idk.rotate(4))].join("").to_i]
-#       elsif key1 == 6 && temp.include?(idk.rotate) && temp.include?(idk.rotate(2)) && temp.include?(idk.rotate(3)) && temp.include?(idk.rotate(4)) && temp.include?(idk.rotate(5))
-#         @circular_primes << [idk.join("").to_i,temp[temp.find_index(idk.rotate)].join("").to_i,temp[temp.find_index(idk.rotate(2))].join("").to_i,temp[temp.find_index(idk.rotate(3))].join("").to_i,temp[temp.find_index(idk.rotate(4))].join("").to_i,temp[temp.find_index(idk.rotate(5))].join("").to_i]
-#       else
-#         next
-#       end
-#     end
-#   end
-# end
+p euler.circular_primes.flatten.uniq.sort
