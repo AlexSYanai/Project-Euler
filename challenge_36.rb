@@ -16,7 +16,7 @@ class DoubleBasePalindrome
   end
 
   def double_base_palindrome
-    two_array.map { |palindrome| palindrome.to_i(2) }.inject(:+)
+    puts two_array.map { |palindrome| palindrome.to_i(2) }.inject(:+)
   end
 
   private
@@ -32,4 +32,4 @@ end
 euler = DoubleBasePalindrome.new(1000000)
 euler.find_ten_palindrome
 euler.find_two_palindrome
-p euler.double_base_palindrome
+euler.double_base_palindrome
