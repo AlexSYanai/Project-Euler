@@ -1,13 +1,34 @@
 class TruncatablePrimes
-  def initialize
-    @search_range    = (3..(Math.sqrt(finish).floor + 1))
-    @prime_array     = search_range.step(2).to_a.insert(0,2)
-    @sum_truncatable = 0
+  attr_accessor :prime_array,:sum_truncatable
+  attr_reader   :upper_bound
+  def initialize(finish)
+    @upper_bound     = finish
+    @prime_array     = []
+  end
+
+  def find_truncatable
+    p @sum_truncatable = prime_array.select { |i| (0..i.to_s.length-1).all? { |j| is_prime?((i.to_s[0..j].to_i),prime_array) && is_prime?((i.to_s[j..-1].to_i),prime_array) } unless i.to_s.length == 1}.inject(:+)
   end
 
   def sieve_of_eratosthenes
-    (4..prime_array.last).each { |counter| prime_array.delete_if { |number| number % counter == 0 && number > counter } }
+    (0..upper_bound).each { |i| prime_array[i] = i+2 }
+    index = 0
+    while prime_array[index]**2 <= prime_array.last
+      @prime_array = prime_array.select { |x| x == prime_array[index] || x % prime_array[index] != 0 }
+      index += 1
+    end
   end
 
-  def is_
+  def is_prime?(target_value,array,low=0,high=array.length) # .include? too slow - binary search ftw
+    mid = (low+high)/2
+    return false if (high-low) == 1
+    return true if target_value == array[mid]
+    return true if target_value == 2
+    target_value > array[mid] ? is_prime?(target_value,array,mid,high) : is_prime?(target_value,array,low,mid)
+  end
 end
+
+euler =  TruncatablePrimes.new(1000000)
+euler.sieve_of_eratosthenes
+euler.find_truncatable
+euler.sum_truncatable
