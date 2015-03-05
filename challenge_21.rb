@@ -1,7 +1,6 @@
 class FindAmicable
   attr_accessor :prime_array, :sum_amicable
   attr_reader :search_range, :finish
-
   def initialize(finish)
     @finish = finish
     @search_range = (3..(Math.sqrt(finish).floor + 1))

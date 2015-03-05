@@ -1,7 +1,6 @@
 class CircularPrime #Slow bruteforce but effective and easily runs under a minute
   attr_accessor :prime_array, :circular_primes, :finish
   attr_reader   :finish
-
   def initialize(finish)
     @finish = finish-2
     @prime_array = []

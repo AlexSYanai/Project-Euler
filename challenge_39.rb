@@ -1,6 +1,5 @@
 class IntegerRight
   attr_accessor :value_hash, :num_range
-
   def initialize(finish)
     @value_hash = {}
     @num_range  = (1..finish)

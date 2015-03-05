@@ -1,6 +1,5 @@
 class PrimePermutation
   attr_accessor :prime_array,:prime_hash,:final_string
-
   def initialize(finish)
     @prime_array  = (1..finish).step(2).to_a.insert(0,2)
     @prime_hash   = {}
