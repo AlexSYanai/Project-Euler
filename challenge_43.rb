@@ -47,39 +47,3 @@ euler.select_permutations
 euler.validate_sub_strings
 euler.find_pandigitals
 p euler.all_pandigitals.flatten.inject(:+)
-
-
-
-
-
-
-
-  # def select_permutations
-  #   @temp = []
-  #   @sub_strings[17].each do |a|
-  #     @sub_strings[13].each do |b|
-  #       @sub_strings[11].each do |c|
-  #         @temp << c[0] + b[0] + a if check_sub_string.call(a,b,c) && c[0] == "5" # Since last digit of sub_strings[] must be 5
-  #       end
-  #     end
-  #     @temp.select! { |n| n.split("") == n.split("").uniq }
-  #   end
-  #   @temp1 = []
-  #   @sub_strings[7].each do |a|
-  #     @sub_strings[5].each do |b|
-  #       @sub_strings[3].each do |c|
-  #         @temp1 << c[0] + b[0] + a if a[-3..-2] == b[-2..-1] && b[-3..-2] == c[-2..-1] && b[0].to_i.even? #fourth digit needs to be even
-  #       end
-  #     end
-  #     @temp1.select! { |n| n.split("") == n.split("").uniq }
-  #   end
-  #   sub_strings[:third] = []
-  #   @temp.each do |a|
-  #     @temp1.each do |b|
-  #       sub_strings[:third] << b[0..-3] + a if a[0..1] == b[-2..-1] && ( b[0..-3] + a).split("") == ( b[0..-3] + a).split("").uniq
-  #     end
-  #   end
-  #   leftover = sub_strings[:third].sort!.map { |n| @number_array - n.split("") }
-  #   sub_strings[:third].each_with_index { |n,i| all_pandigitals << [(leftover[i].join("") + n).to_i,(leftover[i].reverse.join("") + n).to_i]}
-  #   p all_pandigitals.flatten.inject(:+)
-  # end
