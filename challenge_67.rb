@@ -1,6 +1,6 @@
 class TrianglePath # Essentially Solution to #13 w/slight changes
-  attr_reader   :filename
   attr_accessor :tri_nums
+  attr_reader   :filename
 
   def initialize(filename)
     @filename = filename
@@ -23,6 +23,6 @@ class TrianglePath # Essentially Solution to #13 w/slight changes
   end
 end
 
-yodle_triangle = TrianglePath.new('challenge_67_triangle.txt')
-yodle_triangle.parse_file
-yodle_triangle.find_path
+euler = TrianglePath.new('challenge_67_triangle.txt')
+euler.parse_file
+euler.find_path
