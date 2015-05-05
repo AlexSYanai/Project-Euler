@@ -1,5 +1,6 @@
-class PrimeFinder
-  attr_accessor :new_num, :largest_factor, :counter
+class FindPrime
+  attr_accessor :counter
+  attr_reader   :new_num,:largest_factor
   def initialize(num)
     @new_num        = num
     @counter        = 2
@@ -10,13 +11,12 @@ class PrimeFinder
     while ((counter**2) <= new_num)
       if (new_num % counter == 0)
         @new_num /= counter
-        largest_factor = counter
+        @largest_factor = counter
       else
         @counter += 1
       end
       largest
     end
-    new_num
   end
 
   def largest
@@ -24,5 +24,6 @@ class PrimeFinder
   end
 end
 
-euler = PrimeFinder.new(600851475143)
-p euler.finder
+euler = FindPrime.new(600851475143)
+euler.finder
+p euler.largest_factor
