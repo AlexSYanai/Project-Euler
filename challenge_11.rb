@@ -23,14 +23,14 @@ class GridProduct
 	attr_accessor :master_grid, :highest_value
 
 	def initialize(grid)
-		@master_grid = grid.split(",").map{|element| element.to_i}.each_slice(20).to_a
+		@master_grid = grid.split(",").map(&:to_i).each_slice(20).to_a
 		@highest_value = 0
 	end
 
 	def horiz(args = {})
 		sliced_grid = args[:grid] || master_grid
-		for row in 0..19
-			for col in 0..16
+		(0..19).each do |row|
+			(0..16).each do |col|
 				temp_value = sliced_grid[row][col] * sliced_grid[row][col+1] * sliced_grid[row][col+2] * sliced_grid[row][col+3]
 				@highest_value = temp_value if temp_value > highest_value
 			end
@@ -44,8 +44,8 @@ class GridProduct
 
 	def diag_down(args = {})
 		sliced_grid = args[:grid] || master_grid
-		for row in 0..16
-			for col in 0..16
+		(0..16).each do |row|
+			(0..16).each do |col|
 				temp_value = sliced_grid[row][col] * sliced_grid[row+1][col+1] * sliced_grid[row+2][col+2] * sliced_grid[row+3][col+3]
 				@highest_value = temp_value if temp_value > highest_value
 			end
@@ -53,9 +53,9 @@ class GridProduct
 	end
 
 	def diag_up
-      rotated_grid = master_grid.transpose.map{|i| i.reverse}
-      diag_down(grid: rotated_grid)
-  	end
+    rotated_grid = master_grid.transpose.map(&:reverse)
+    diag_down(grid: rotated_grid)
+	end
 end
 
 euler = GridProduct.new(master_grid_array)
