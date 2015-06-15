@@ -1,4 +1,4 @@
-require 'benchmark'
+# require 'benchmark'
 class TriangleNumbers
   attr_accessor :prime_array,:triangle_num,:divs,:num_divs,:current_prime
   attr_reader   :target_divs

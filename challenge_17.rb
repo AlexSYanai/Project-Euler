@@ -1,5 +1,5 @@
-def in_words  					#Copied, with a few minor changes, from my solution to a 
-	challenge_range = (1..999)	#DBC Phase 0 problem.
+def in_words  					#Copied, with a few minor changes, from my solution to a DBC Phase 0 problem.
+	challenge_range = (1..999)	
 	ones = {1 => "one",
 		2 => "two",
 		3 => "three",
@@ -31,7 +31,7 @@ def in_words  					#Copied, with a few minor changes, from my solution to a
 
 	word_string = ""
 	for n in challenge_range
-		a = n.to_s.split(//).reverse
+		a = n.to_s.split("").reverse
 		if n < 20
 			word_string += ones[n]
 		elsif a.length == 2
@@ -49,8 +49,7 @@ def in_words  					#Copied, with a few minor changes, from my solution to a
 			end
 		end
 	end
-	p final_word_string = word_string + "onethousand"
-	final_word_string.length
+	(word_string + "onethousand").length
 end
 
 p in_words

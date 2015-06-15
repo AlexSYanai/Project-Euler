@@ -1,11 +1,28 @@
-def num1 #Recycled from challenge 7 - it takes a while to run but it works..
-	number_generator = (3..2000000).step(2).to_a
-	counter = 3
-	while counter**2 <= number_generator.last
-		number_generator.delete_if { |number| number % counter == 0 && number > counter }
-	 	counter += 1
+class PrimeCache
+	attr_accessor :finish
+	attr_reader   :primes
+	def initialize(finish)
+		@finish = finish
+		@primes = [2,3]
 	end
-	number_generator.inject(:+) #=> Need to add 2, but I lazily copied my challenge 7 code
+
+	def get_primes_upto
+		return print_prime_sums if primes.last == finish 
+		primes.last > finish ? @primes.select(:<) : (@primes.last..finish).step(2).map { |x| @primes << x if is_prime?(x) }
+	end
+
+	def is_prime?(num)
+		primes.each do |prime|
+			return false if num % prime == 0
+			return true if prime > Math.sqrt(num).round
+		end
+	end
+
+	def print_prime_sums
+		primes.inject(:+)
+	end
 end
 
-p num1
+idk = PrimeCache.new(2000000)
+idk.get_primes_upto
+p idk.print_prime_sums

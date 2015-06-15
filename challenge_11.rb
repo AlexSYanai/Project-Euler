@@ -21,13 +21,12 @@ master_grid_array = %q(08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,
 
 class GridProduct
 	attr_accessor :master_grid, :highest_value
-
 	def initialize(grid)
-		@master_grid = grid.split(",").map(&:to_i).each_slice(20).to_a
+		@master_grid   = grid.split(",").map(&:to_i).each_slice(20).to_a
 		@highest_value = 0
 	end
 
-	def horiz(args = {})
+	def horiz(args={})
 		sliced_grid = args[:grid] || master_grid
 		(0..19).each do |row|
 			(0..16).each do |col|
@@ -37,12 +36,7 @@ class GridProduct
 		end
 	end
 
-	def vert
-		flipped_grid = master_grid.transpose
-		horiz(grid: flipped_grid)
-	end
-
-	def diag_down(args = {})
+	def diag_down(args={})
 		sliced_grid = args[:grid] || master_grid
 		(0..16).each do |row|
 			(0..16).each do |col|
@@ -52,14 +46,16 @@ class GridProduct
 		end
 	end
 
+	def vert
+		horiz(grid: master_grid.transpose)
+	end
+
 	def diag_up
-    rotated_grid = master_grid.transpose.map(&:reverse)
-    diag_down(grid: rotated_grid)
+    diag_down(grid: master_grid.transpose.map(&:reverse))
 	end
 end
 
 euler = GridProduct.new(master_grid_array)
-
 euler.vert
 euler.horiz
 euler.diag_down

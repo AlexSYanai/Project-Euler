@@ -11,16 +11,11 @@ class FindNonAbundant #Started by recycling previous challenges...took a while a
     (2..final).each { |num| abundant_array << num if is_abundant?(num) }
   end
 
-  def is_abundant?(number)
-    number < find_divisors(number)
-  end
-
   def find_divisors(number)
     sum = 1
-
     for i in (2..Math.sqrt(number))
       if number % i == 0
-        sum += number / i if i != Math.sqrt(number)
+        sum += (number / i) unless i == Math.sqrt(number)
         sum += i
       end
     end
@@ -30,7 +25,7 @@ class FindNonAbundant #Started by recycling previous challenges...took a while a
   def find_summed
     abundant_array.each do |first|
       abundant_array.each do |second|
-        abundant_sum = first+second
+        abundant_sum = first + second
         break if abundant_sum > final
         summed_abundants << abundant_sum
       end
@@ -38,9 +33,12 @@ class FindNonAbundant #Started by recycling previous challenges...took a while a
   end
 
   def summed
-    return ((1..final).to_a - summed_abundants).inject(:+)
+    ((1..final).to_a - summed_abundants).inject(:+)
   end
 
+  def is_abundant?(number)
+    number < find_divisors(number)
+  end
 end
 
 euler = FindNonAbundant.new(28123)
