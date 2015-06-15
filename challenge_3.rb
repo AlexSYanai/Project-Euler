@@ -8,8 +8,8 @@ class FindPrime
   end
 
   def finder
-    while ((counter**2) <= new_num)
-      if (new_num % counter == 0)
+    while (counter**2) <= new_num
+      if new_num % counter == 0
         @new_num /= counter
         @largest_factor = counter
       else
