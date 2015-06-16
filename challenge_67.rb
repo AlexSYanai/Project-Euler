@@ -9,7 +9,7 @@ class TrianglePath # Essentially Solution to #13 w/slight changes
 
   def parse_file
     File.open(filename,'r').each_line do |line|
-      tri_nums << line.chomp.split(" ").map { |number| number.to_i }
+      tri_nums << line.chomp.split(" ").map(&:to_i)
     end
   end
 

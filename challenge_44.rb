@@ -1,3 +1,13 @@
+class Integer
+  def is_pentagonal? # Inverse of pentagonal function
+    ((Math.sqrt((24 * self) + 1) + 1) % 6) == 0
+  end
+
+  def generate_pentagonal
+    (self*((self*3)-1)/2)
+  end
+end
+
 class Pentagonal
   attr_accessor :pentagonal
   def initialize
@@ -7,23 +17,17 @@ class Pentagonal
   def find_pentagonal
     i = 2
     until pentagonal > 0
-      a = generate_pentagonal(i)
-      j = i - 1
-      while j > 0
-        b = generate_pentagonal(j)
-        @pentagonal = (a-b) if is_pentagonal?(a-b) && is_pentagonal?(a+b)
-        j -= 1
+      a = i.generate_pentagonal
+      (i-1).downto(1) do |j|
+        b = j.generate_pentagonal
+        @pentagonal = (a-b) if both_pentagonl?(a,b)
       end
       i += 1
     end
   end
 
-  def generate_pentagonal(num)
-    (num*((num*3)-1)/2)
-  end
-
-  def is_pentagonal?(num) # Inverse of pentagonal function
-    ((Math.sqrt((24 * num) + 1) + 1) % 6) == 0
+  def both_pentagonl?(a,b)
+    (a-b).is_pentagonal? && (a+b).is_pentagonal?
   end
 end
 

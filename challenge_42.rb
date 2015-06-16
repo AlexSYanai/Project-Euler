@@ -1,12 +1,10 @@
 class TriangleWord
   attr_accessor :number_array,:word_array,:all_triangles,:triangles
   attr_reader   :file,:word_key
-
   def initialize(filename)
-    @file           = filename
-    @word_key       = Hash[('A'..'Z').zip(1..26)]
-    @word_array     = File.open(file,'r').read.gsub(/\W+/, ',').split(',').drop(1)
-    @triangles      = []
+    @file       = filename
+    @word_key   = Hash[('A'..'Z').zip(1..26)]
+    @word_array = File.open(file,'r').read.gsub(/\W+/, ',').split(',').drop(1)
   end
 
   def convert_words
@@ -18,7 +16,7 @@ class TriangleWord
   end
 
   def find_triangle_numbers
-    number_array.each { |number| triangles << number if is_triangle?(number) }
+    @triangles = number_array.select { |n| is_triangle?(n) }
   end
 
   def is_triangle?(num)

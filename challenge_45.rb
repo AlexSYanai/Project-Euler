@@ -1,3 +1,13 @@
+class Integer
+  def is_pentagonal? # Inverse of pentagonal function
+    ((Math.sqrt((24 * self) + 1) + 1) % 6) == 0
+  end
+
+  def generate_hexagonal
+    self*((2 * self) - 1)
+  end
+end
+
 class TrianglePentagonHexagon
   attr_accessor :final
   def initialize
@@ -7,18 +17,10 @@ class TrianglePentagonHexagon
   def find_pentagonal # All hexagonal are triagonal
     counter = 144
     until final > 0
-      hex = generate_hexagonal(counter)
-      @final = hex if is_pentagonal?(hex)
+      hex = counter.generate_hexagonal
+      @final = hex if hex.is_pentagonal?
       counter += 1
     end
-  end
-
-  def generate_hexagonal(num)
-    num*((2 * num) - 1)
-  end
-
-  def is_pentagonal?(num) # Inverse of final function
-    ((Math.sqrt((24 * num) + 1) + 1) % 6) == 0
   end
 end
 

@@ -31,8 +31,7 @@ class FindPrime
       @nod += 1 if @pf
       return @nod if @remain == 1
     end
-
-    return @nod
+    @nod
   end
 
   def sieve_of_eratosthenes

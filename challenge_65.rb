@@ -17,7 +17,7 @@ class Convergent
   end
 
   def calculate_result
-    @result = numerator.to_s.split("").map { |num| num.to_i }.inject(:+)
+    @result = numerator.to_s.split("").map(&:to_i).inject(:+)
   end
 end
 
