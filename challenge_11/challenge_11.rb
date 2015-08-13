@@ -37,7 +37,7 @@ class GridProduct
 	end
 
 	def diag_down(args={})
-		sliced_grid = args[:grid] || master_grid
+    sliced_grid = args[:grid] || master_grid
 		(0..16).each do |row|
 			(0..16).each do |col|
 				temp_value = sliced_grid[row][col] * sliced_grid[row+1][col+1] * sliced_grid[row+2][col+2] * sliced_grid[row+3][col+3]
@@ -46,9 +46,9 @@ class GridProduct
 		end
 	end
 
-	def vert
-		horiz(grid: master_grid.transpose)
-	end
+  def vert
+    horiz(grid: master_grid.transpose)
+  end
 
 	def diag_up
     diag_down(grid: master_grid.transpose.map(&:reverse))
@@ -56,8 +56,7 @@ class GridProduct
 end
 
 euler = GridProduct.new(master_grid_array)
-euler.vert
 euler.horiz
-euler.diag_down
+euler.vert
 euler.diag_up
 p euler.highest_value

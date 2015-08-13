@@ -14,7 +14,7 @@ class PrimeCache
 	def is_prime?(num)
 		primes.each do |prime|
 			return false if num % prime == 0
-			return true if prime > Math.sqrt(num).round
+			return true  if prime > Math.sqrt(num).round
 		end
 	end
 
