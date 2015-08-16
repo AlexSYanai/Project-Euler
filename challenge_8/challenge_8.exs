@@ -10,12 +10,12 @@ defmodule LargestProduct do
 	end
 
 	def check_thirteen(nums,start,lim,largest) when lim <= 1013 do
-		prod = String.split(String.slice(nums,start..lim),"",trim: true) |> 
-													Enum.map(fn x -> String.to_integer(x) end) |> 
-													Enum.reduce(1, fn y,z -> y * z end)
-		if prod > largest do
-			largest = prod
-		end
+		prod = String.split(String.slice(nums,start..lim),"",trim: true)
+				|> Enum.map(fn x -> String.to_integer(x) end) 
+				|> Enum.reduce(1, fn y,z -> y * z end)
+
+		if prod > largest do: largest = prod
+		
 		check_thirteen(nums,start+1,lim+1,largest)
 	end
 end

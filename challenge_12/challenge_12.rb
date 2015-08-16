@@ -1,30 +1,29 @@
 # require 'benchmark'
 class TriangleNumbers
-  attr_accessor :prime_array,:triangle_num,:divs,:num_divs,:current_prime
+  attr_accessor :prime_array,:triangle_num,:divs,:num_divs,:current
   attr_reader   :target_divs
   def initialize(target_divs)
     @target_divs   = target_divs
     @prime_array   = []
     @divs          = []
-    @triangle_num  = 1
     @num_divs      = 0
-    @current_prime = 3
+    @current       = 3
+    @triangle_num  = 1
   end
 
   def find_triangle_numbers
     while num_divs <= target_divs
-      @triangle_num = (current_prime*(current_prime+1)/2)
+      @triangle_num = (current*(current+1)/2)
       test_triangle(triangle_num)
       @num_divs = divs.map { |i| i += 1 }.inject(:*)
-      @current_prime += 1
+      @current += 1
     end
   end
 
   def test_triangle(tri_num)
-    count = 0
-    factors = []
-    @divs = []
-    i = 0
+    count,i = 0,0
+    factors,@divs = [],[]
+
     while tri_num > 1
       if (tri_num % @prime_array[i]) == 0
         factors << @prime_array[i] unless factors.include?(@prime_array[i])
@@ -32,7 +31,7 @@ class TriangleNumbers
         tri_num /= @prime_array[i]
         divs << count if tri_num == 1
       else
-        count > 0 ? divs << count : nil
+        divs << count if count > 0
         count = 0
         i += 1
       end
