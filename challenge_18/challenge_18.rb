@@ -18,7 +18,7 @@ triangle_array = [75],[95, 64],[17, 47, 82],[18, 35, 87, 10],[20, 04, 82, 47, 65
 
 (triangle_array.length - 1).downto(0) do |i| # Start from the bottom and find the best of the 15th row pairs for each 14th row element
 	(0..(i-1)).each do |j|										 # Iterate through each row and compare numbers in a pairwise fashion
-		triangle_array[i-1][j] += [triangle_array [i][j], triangle_array [i][j+1]].sort.pop # Add highest to 1th row element
+		triangle_array[i-1][j] += [triangle_array [i][j], triangle_array [i][j+1]].max # Add highest to 1th row element
 	end
 end
 
