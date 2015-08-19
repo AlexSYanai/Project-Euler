@@ -22,8 +22,8 @@ class SundayCount
 	end
 
 	def is_leap_year?(year)
-		year % 4 == 0 unless year % 100 == 0 && year % 400 != 0 #Returns non-4-multiple centuries as nil...which evals
-	end															#to false. So it works.
+		year % 4 == 0 unless year % 100 == 0 && year % 400 != 0 
+	end															
 end
 
 euler = SundayCount.new(1901,2000)

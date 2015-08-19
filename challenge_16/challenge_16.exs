@@ -4,3 +4,9 @@ defmodule Mth do
   def p(x, n) when rem(n, 2) == 0, do: (p(x, div(n, 2)))*(p(x, div(n, 2)))
   def p(x, n) when rem(n, 2) != 0, do: x * p(x, n-1)
 end
+
+Mth.p(2,1_000) 
+	|> Integer.to_string 
+	|> String.split("", trim: true) 
+	|> Enum.map(fn x -> String.to_integer(x) end) 
+	|> Enum.reduce(fn y,z -> y + z end)
