@@ -1,10 +1,10 @@
 defmodule Sundays do
-	def count([curent|[_|[count|_]]],final,_) when curent == final do
+	def count(final,[year|[_|[count|_]]],_) when year == final do
 		IO.inspect count+1
 	end
 
-	def count([curent|[day|count]],final,months) when curent < final do
-		count(calendar(curent,months,day,List.first(count)),final,months)
+	def count(final,[year|[day|count]],months) when year < final do
+		count(final,calendar(year,months,day,List.first(count)),months)
 	end
 
 	def calendar(year,months,day,count) when length(months) <= 0 do
@@ -25,4 +25,4 @@ defmodule Sundays do
 	end
 end
 
-Sundays.count([1901,2,0],2000,[31,28,31,30,31,30,31,31,30,31,30,31])
+Sundays.count(2000,[1901,2,0],[31,28,31,30,31,30,31,31,30,31,30,31])
