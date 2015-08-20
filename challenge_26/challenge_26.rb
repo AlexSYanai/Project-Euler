@@ -4,4 +4,4 @@ array_of_remainders = (0..1000).map do |denominator|
   end
 end
 
-p array_of_remainders.each_with_index.max.last
+p array_of_remainders.each_with_index.max#.last
