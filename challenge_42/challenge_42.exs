@@ -48,7 +48,7 @@ defmodule TriangleWords do
 			|> triangle_numbers()
 	end
 
-	def find(word,count,tri_nums) when length(word) == 0 do
+	def find(word,count,_) when length(word) == 0 do
 		count
 	end
 
