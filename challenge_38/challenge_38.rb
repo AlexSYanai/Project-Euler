@@ -16,10 +16,10 @@ class PandigitalMultiples
 
   private
   def find_products(num)
-    prime = num.to_s
+    pan = num.to_s
     (2..4).each do |n|
-      prime += (num*n).to_s
-      all_pandigitals << prime if is_pandigital?(prime)
+      pan += (num*n).to_s
+      all_pandigitals << pan if is_pandigital?(pan)
     end
   end
 
