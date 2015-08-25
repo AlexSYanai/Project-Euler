@@ -1,10 +1,10 @@
 defmodule Coins do
-	def count([],_,vals), do: vals
+	def count([],_,vals),  do: vals
 	def count([coin|coins],lim,vals) when length(coins) >= 0 do
 		count(coins,lim,ways(coin,coin,lim,vals))
 	end
 
-	def ways(num,_,lim,vals) 		when num > lim, do: vals
+	def ways(num,_,   lim,vals) when num > lim, do: vals
 	def ways(num,coin,lim,vals) when num <= lim do
 		ways(num+1,coin,lim,ad(coin,num,vals))
 	end

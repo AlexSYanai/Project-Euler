@@ -4,7 +4,7 @@ class Integer
   end
 
   def generate_hexagonal
-    self*((2 * self) - 1)
+    self * ((self * 2) - 1)
   end
 end
 

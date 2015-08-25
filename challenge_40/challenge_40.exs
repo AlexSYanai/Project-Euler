@@ -8,7 +8,7 @@ defmodule Champernowne do
 			|> IO.inspect
 	end
 
-	def find([digit|digits],count,tens,final) when tens > 1_000_000 do
+	def find(_,_,tens,final) when tens > 1_000_000 do
 		final
 	end
 
