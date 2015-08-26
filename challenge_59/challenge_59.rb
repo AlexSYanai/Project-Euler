@@ -71,8 +71,8 @@ class Encryption
 
 	def create_cipher_key
 		@cipher_key = cipher*(encrypted.length/3)
-		unless encrypted.length%3 == 0
-			encrypted.length%3 == 1 ? cipher_key << cipher_key[0] : cipher_key << cipher_key[0] << cipher_key[1]
+		unless encrypted.length % 3 == 0
+			encrypted.length % 3 == 1 ? cipher_key << cipher_key[0] : cipher_key << cipher_key[0] << cipher_key[1]
 		end
 	end
 
@@ -81,11 +81,11 @@ class Encryption
 	end
 
 	def print_deciphered_text
-		puts decrypted.map(&:chr).join("")
+		decrypted.map(&:chr).join("")
 	end
 
 	def print_original_text_sums
-		puts "Sum of Original ASCII Values: #{decrypted.inject(:+)}"
+		puts "MESSAGE\n=======\n#{print_deciphered_text}\n=======\nSum of Original ASCII Values: #{decrypted.inject(:+)}"
 	end
 end
 
