@@ -5,7 +5,7 @@ class PrimeSum
     @finish      = finish
     @prime_array = []
     @num_primes  = 0
-    @prime_sum    = [0]
+    @prime_sum   = [0]
   end
 
   def find_prime_sum

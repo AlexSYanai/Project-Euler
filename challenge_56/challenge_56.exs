@@ -7,8 +7,8 @@ end
 
 
 defmodule DigitSum do
-	def largest(i,_,largest) when i < 90 do: largest
-	def largest(i,j,largest) when j < 90 do
+	def largest(i,_,largest) when i < 90, do: largest
+	def largest(i,j,largest) when j < 90  do
 		largest(i-1,99,largest)
 	end
 

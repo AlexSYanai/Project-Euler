@@ -1,5 +1,5 @@
 defmodule PolygonNumbers do
-	def tri_pent_hex(i,final) when final > 0,  do: final
+	def tri_pent_hex(_,final) when final > 0,  do: final
 	def tri_pent_hex(i,final) when final == 0  do 
 		hex = gen(i)
 		if pent?(hex), do: final = hex
