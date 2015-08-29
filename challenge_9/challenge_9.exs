@@ -6,10 +6,7 @@ defmodule ThousandTriple do
 	def combine_numbers(a,b,c,triple) when c >= 332, do: combine_numbers(a,(b+1),1,triple)
 	def combine_numbers(a,b,_,triple) when b >= 499, do: combine_numbers((a+1),2,1,triple)
 	def combine_numbers(a,_,_,_) 			when a >= 600, do: IO.puts "Error - Something Went Wrong"
-
-	def	combine_numbers(_,_,_,triple) when triple > 0 do
-		IO.puts triple	
-	end
+	def	combine_numbers(_,_,_,triple) when triple > 0, do: IO.puts triple	
 
 	def combine_numbers(a,b,c,triple) when triple <= 0 do
 		if pythagorean_triplet?(a,b,c)  do

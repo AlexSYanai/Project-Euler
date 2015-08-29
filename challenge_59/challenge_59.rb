@@ -89,7 +89,7 @@ class Encryption
 	end
 end
 
-euler = Encryption.new('challenge_59_cipher.txt',[103, 111, 100])
+euler = Encryption.new('challenge_59/challenge_59_cipher.txt',[103, 111, 100])
 euler.parse_encoded_file
 euler.create_cipher_key
 euler.decrypt_cipher

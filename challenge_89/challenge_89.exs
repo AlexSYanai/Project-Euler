@@ -13,11 +13,10 @@ defmodule RomanNumerals do
 			|> String.replace(~r/CCCC|XXXX|IIII|LXXXX|DCCCC|VIIII/,"**")
 			|> String.length()
 			|> diff(String.length(file))
+			|> IO.puts 
 	end
 
-	def diff(replaced,original) do
-		original - replaced
-	end
+	def diff(replaced,original), do: original - replaced
 end
 
-IO.puts RomanNumerals.convert("challenge_89_romans.txt")
+RomanNumerals.convert("challenge_89/challenge_89_romans.txt")

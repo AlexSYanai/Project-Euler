@@ -24,7 +24,7 @@ class TriangleWord
   end
 end
 
-euler = TriangleWord.new('challenge_42_words.txt')
+euler = TriangleWord.new('challenge_42/challenge_42_words.txt')
 euler.convert_words
 euler.generate_triangle_numbers
 euler.find_triangle_numbers

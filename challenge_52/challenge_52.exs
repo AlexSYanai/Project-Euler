@@ -16,7 +16,13 @@ defmodule Permutation do
 	end
 
 	def permutation?(a,b,c), do: a === convert(b*c)
-	def convert(n), do: n |> Integer.to_string() |> String.split("", trim: true) |> Enum.sort()
+	
+	def convert(n) do
+		n 
+			|> Integer.to_string() 
+			|> String.split("", trim: true) 
+			|> Enum.sort()
+	end
 end
 
 Permutation.multiples(1,1_000_000,false)

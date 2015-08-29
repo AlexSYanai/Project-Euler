@@ -14,8 +14,8 @@ defmodule SieveofEratosthenes do
 end
 
 defmodule Triangle do
-	def factor(tri,divs,facts,p_a,i,count) when tri <= 1 do
-		Enum.reduce(Enum.map(divs, fn x -> x + 1 end), fn a,b -> a * b end)
+	def factor(tri,divs,_,_,_,_) when tri <= 1 do
+		Enum.reduce(Stream.map(divs, fn x -> x + 1 end), fn a,b -> a * b end)
 	end
 
 	def factor(tri,divs,facts,p_a,i,count) when tri > 1 do
@@ -24,7 +24,7 @@ defmodule Triangle do
 			unless Enum.member?(facts,prime), do: facts = [prime] ++ facts
 			count = count + 1
 			tri = div(tri,prime)
-			if tri == 1, do: divs = divs ++ [count]
+			if tri == 1, 	do: divs = divs ++ [count]
 		else
 			if count > 0, do: divs = divs ++ [count]
 			count = 0

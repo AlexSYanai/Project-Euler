@@ -8,5 +8,6 @@ end
 Mth.p(2,1_000) 
 	|> Integer.to_string 
 	|> String.split("", trim: true) 
-	|> Enum.map(fn x -> String.to_integer(x) end) 
+	|> Stream.map(&(String.to_integer(&1))) 
 	|> Enum.reduce(fn y,z -> y + z end)
+	|> IO.inspect

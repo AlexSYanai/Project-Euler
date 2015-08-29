@@ -71,10 +71,10 @@ defmodule NumsTo do
 
 	def str_rev(num) do
 		num 
-		|> Integer.to_string() 
-		|> String.split("", trim: true) 
-		|> Enum.reverse()
-		|> List.to_tuple() 
+		  |> Integer.to_string() 
+		  |> String.split("", trim: true) 
+		  |> Enum.reverse()
+		  |> List.to_tuple() 
 	end
 end
 

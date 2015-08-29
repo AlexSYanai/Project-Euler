@@ -1,7 +1,5 @@
 defmodule PowerfulDigits do
-	def counts(_,_,count,len_bool) when len_bool == false do
-		count
-	end
+	def counts(_,_,count,len_bool) when len_bool == false, do: count
 
 	def counts(exp,num,count,len_bool) when len_bool == true do
 		if num != 9, do: [num,count] = exps(num,num,exp,count), else: count = count + 1

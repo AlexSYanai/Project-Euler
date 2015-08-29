@@ -23,6 +23,6 @@ class TrianglePath # Essentially Solution to #13 w/slight changes
   end
 end
 
-euler = TrianglePath.new('challenge_67_triangle.txt')
+euler = TrianglePath.new('challenge_67/challenge_67_triangle.txt')
 euler.parse_file
 euler.find_path

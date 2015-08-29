@@ -14,9 +14,7 @@ defmodule PrimeFactor do
 	end
 
 	def factor(counter, largest, limit) when (counter*counter) >= limit do
-		if limit > largest do
-			largest = limit
-		end
+		if limit > largest, do: largest = limit
 		largest
 	end
 end

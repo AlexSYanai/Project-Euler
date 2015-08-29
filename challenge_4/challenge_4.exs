@@ -4,29 +4,19 @@ defmodule PalindromicProduct do
 	end
 
 	def prime_products(m,n,_,limit) when n <= 899 do
-		m = m - 1
-		n = limit - 1
-		
-		prime_products(m,n,0,limit)
+		prime_products(m - 1,limit - 1,0,limit)
 	end
 
 	def	prime_products(_,_,found,_) when found > 0 do
-		IO.puts found	
+		found	
 	end
 
 	def prime_products(m,n,found,limit) when n > 899 do
-		prod = m*n
-		if palindrome?(to_string(prod)) do
-			found = prod
-		end 
-		n = n - 1
-
-		prime_products(m,n,found,limit)
+		if palindrome?(to_string(m*n)), do: found = m*n
+		prime_products(m,n - 1,found,limit)
 	end
 
-	def palindrome?(prod) do
-		prod == String.reverse(prod)
-	end
+	def palindrome?(prod), do: prod == String.reverse(prod)
 end
 
-PalindromicProduct.find_palindrome(999)
+IO.inspect PalindromicProduct.find_palindrome(999)

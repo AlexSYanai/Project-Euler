@@ -11,9 +11,7 @@ defmodule Pentagonal do
 		find(j-1,a,pent)
 	end
 
-	def gen(n) do 
-		div((n * ((n * 3) - 1)),2)
-	end
+	def gen(n), do: div((n * ((n * 3) - 1)),2)
 
 	def pent?(n) do
 		m = (:math.sqrt((24 * n) + 1) + 1)

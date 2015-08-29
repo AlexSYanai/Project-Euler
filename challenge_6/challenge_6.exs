@@ -1,18 +1,18 @@
 defmodule SquareDiff do
-	def idk do
-		square = (fn(x) -> x * x end)
-		calc_diff(((1..100) 
-							  |> Enum.reduce(fn(a,b) -> a + b end) 
-							  |> square.()), 
-						  ((1..100) 
-						  	|> Enum.map(square) 
-							  |> Enum.reduce(fn(a,b) -> a + b end)
-						 ))
+	def diff do
+		calc_diff(
+			((1..100) 
+				  |> Enum.reduce(fn(a,b) -> a + b end) 
+				  |> square()), 
+			  ((1..100) 
+			  	|> Enum.map(&(square(&1))) 
+				  |> Enum.reduce(fn(a,b) -> a + b end)
+			 ))
+		|> IO.inspect
 	end
 
-	def calc_diff(b,c) do
-		IO.puts (b - c)
-	end
+	def square(x), 			do: x*x
+	def calc_diff(b,c), do: (b - c)
 end
 
-SquareDiff.idk
+SquareDiff.diff

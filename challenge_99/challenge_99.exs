@@ -18,4 +18,4 @@ defmodule Exponents do
 	end
 end
 
-Exponents.input("challenge_99_exps.txt")
+Exponents.input("challenge_99/challenge_99_exps.txt")

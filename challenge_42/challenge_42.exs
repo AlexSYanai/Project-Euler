@@ -31,7 +31,9 @@ defmodule TriangleWords do
 	def words(file,a_z_key) do
 		case File.read(file) do
 		  {:ok, body} 		->
-		  	parse(body,a_z_key)
+		  	body
+		  	 |> parse(a_z_key)
+		  	 |> IO.inspect
 		  {:error,reason} ->
 		  	:file.format_error(reason)
 		end
@@ -42,16 +44,13 @@ defmodule TriangleWords do
 			|> String.replace(~r/\W+/,",") 
 			|> String.split(",")
 			|> Enum.slice(1,2000)
-			|> Enum.map(fn x -> String.split(x, "", trim: true) end) 
+			|> Stream.map(fn x -> String.split(x, "", trim: true) end) 
 			|> Enum.map(fn y -> Enum.map(y, fn z -> a_z_key[z]  end) 
 				|> Enum.reduce(0,fn a,b -> a + b end) end)
 			|> triangle_numbers()
 	end
 
-	def find(word,count,_) when length(word) == 0 do
-		count
-	end
-
+	def find([],count,_), do: count
 	def find([word|words],count,tri_nums) when length(words) >= 0 do 
 		if triangle?(word,tri_nums), do: count = count + 1
 		find(words,count,tri_nums)
@@ -61,8 +60,9 @@ defmodule TriangleWords do
 		tri_nums = for n <- (1..round(:math.sqrt(Enum.max(words)*2))), do: div(((n*n)+n),2)
 		find(words,0,tri_nums)
 	end
+
 	def triangle?(word,tri_nums), do: Enum.member?(tri_nums,word)
 end
 
 
-IO.inspect TriangleWords.words("challenge_42_words.txt",a_z_key)
+TriangleWords.words("challenge_42/challenge_42_words.txt",a_z_key)

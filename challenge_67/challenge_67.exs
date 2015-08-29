@@ -27,4 +27,4 @@ defmodule Triangle do
 	end
 end
 
-Triangle.input("challenge_67_triangle.txt")
+Triangle.input("challenge_67/challenge_67_triangle.txt")

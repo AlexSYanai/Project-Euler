@@ -38,4 +38,4 @@ defmodule Exponents do
 	end
 end
 
-Exponents.input("challenge_59_cipher.txt",["103", "111", "100"])
+Exponents.input("challenge_59/challenge_59_cipher.txt",["103", "111", "100"])
