@@ -18,7 +18,7 @@ class SieveofAtkin
     end
     check_sieve
     check_primes
-	end
+  end
 
   def print_prime_sums
     p primes.inject(:+)
