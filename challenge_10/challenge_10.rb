@@ -1,4 +1,4 @@
-class SieveofAtkin
+class SieveOfAtkin
   attr_accessor :primes, :sieve
   attr_reader   :limit,  :finish
   def initialize(limit)
@@ -50,6 +50,6 @@ class SieveofAtkin
   end
 end
 
-euler = SieveofAtkin.new(2000000)
+euler = SieveOfAtkin.new(2000000)
 euler.use_sieve
 euler.print_prime_sums
