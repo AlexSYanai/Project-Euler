@@ -41,9 +41,8 @@ void sieve_primes(int lim)
 	// then the candidates are squared and the results are marked false
 	for(i = 5; i <= finish; i++) {
 		if(primes[i]==1) {
-			for(j = 1; j * i*i <= lim; j++) {
-				primes[j*i*i] = 0;	
-			}		
+			for(j = 1; j * i*i <= lim; j++)
+				primes[j*i*i] = 0;
 		}
 	}
 

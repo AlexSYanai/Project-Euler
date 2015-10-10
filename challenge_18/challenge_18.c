@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+int max_val(int a, int b);
+
 int main() 
 {
   int i, j, k;
@@ -33,11 +35,7 @@ int main()
       } else if (j == i) { 
         tri_arr[i][i] += tri_arr[i-1][i-1]; 
       } else {
-        if(tri_arr[i-1][j-1] > tri_arr[i-1][j]) {
-          tri_arr[i][j] += tri_arr[i-1][j-1]; 
-        } else {
-          tri_arr[i][j] += tri_arr[i-1][j]; 
-        }
+        tri_arr[i][j] += max_val(tri_arr[i-1][j-1], tri_arr[i-1][j]); 
       }
     }
   }
@@ -49,4 +47,13 @@ int main()
 
   printf("%lu\n", max);
   return 0;
+}
+
+int max_val(int a, int b)
+{
+  if (a > b) {
+    return a;
+  } else {
+    return b;
+  }
 }

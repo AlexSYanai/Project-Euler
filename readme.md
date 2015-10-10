@@ -3,7 +3,7 @@ Project Euler
 
 **Visit My Profile**: https://projecteuler.net/progress=AlexYanai
 
-  - Originally all **Ruby**, now working through in **Elixir**
+  - Originally all **Ruby**, now working through in **Elixir** and **C**
   - Solutions may not conform to style guides
     - Gems/Libraries such as Time or Prime will be avoided
   - I'll try to go in order, but that may change

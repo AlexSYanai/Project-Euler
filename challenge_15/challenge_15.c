@@ -1,13 +1,6 @@
 #include <stdio.h>
 
-double factorial(int n) 
-{ 
-	if (n <= 1) {
-		return 1;
-	}
-
-	return n * factorial(n-1); 
-} 
+double factorial(int n);
 
 int main() 
 { 
@@ -18,4 +11,13 @@ int main()
 
 	printf("%F\n", a/b); 
 	return 0; 
+} 
+
+double factorial(int n) 
+{ 
+	if (n <= 1) {
+		return 1;
+	}
+
+	return n * factorial(n-1); 
 } 
