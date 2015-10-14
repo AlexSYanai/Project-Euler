@@ -3,6 +3,7 @@
 
 #define LIM 500
 int factor(unsigned long n);
+int b_and(unsigned long i);
 
 int main(void)
 {
@@ -12,12 +13,7 @@ int main(void)
   for (i = 1; i < ULONG_MAX; i++) {
     tri_num += i;
 
-    // Bitwise AND comparison
-    if (i & 1) {
-      count = factor(i) * factor((i+1)/2);
-    } else {
-      count = factor(i/2) * factor(i+1);
-    }
+    count = b_and(i);
 
     if (count > LIM) {
       printf("%ld\n", tri_num);
@@ -39,4 +35,14 @@ int factor(unsigned long n)
     if (n % k == 0) count++;
 
   return count;
+}
+
+// Bitwise AND comparison
+int b_and(unsigned long i)
+{
+  if (i & 1) {
+    return factor(i) * factor((i+1)/2);
+  } else {
+    return factor(i/2) * factor(i+1);
+  }
 }
