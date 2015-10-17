@@ -14,33 +14,33 @@ bool palindrome(int n)
  }
 
  if (n == reverse) {
-  	return true;
+    return true;
   } else {
-  	return false;
+    return false;
   }
 }
 
 int main(void)
 {
-	int final;
-	int outer = 999;
-	int inner = 999;
-	bool pal  = false;
+  int final;
+  int outer = 999;
+  int inner = 999;
+  bool pal  = false;
 
-	while(outer >= 900) {
-		while(inner >= 900) {
-			final = outer * inner;
-			pal = palindrome(final);
-			if (pal) break;
+  while(outer >= 900) {
+    while(inner >= 900) {
+      final = outer * inner;
+      pal = palindrome(final);
+      if (pal) break;
 
-			--inner;
-		}
-		if (pal) break;
+      --inner;
+    }
+    if (pal) break;
 
-		inner = 999;
-		--outer;
-	}
+    inner = 999;
+    --outer;
+  }
 
-	printf("%d\n", final);
-	return 0;
+  printf("%d\n", final);
+  return 0;
 }

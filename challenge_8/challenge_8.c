@@ -6,7 +6,7 @@ char * digits = "731671765313306249192251196744265747423553491949349698352031277
 int main()
 {
   unsigned long i,j,prod,maxpos;
-	unsigned long max = 0;
+  unsigned long max = 0;
 
   for(i = 0; i <= strlen(digits) - 13; i++){
     prod = 1;
@@ -16,8 +16,8 @@ int main()
     }
 
     if (prod >= max) {
-    	max = prod;
-    	maxpos = i;
+      max = prod;
+      maxpos = i;
     }
   }
   printf("%lu\n", max);

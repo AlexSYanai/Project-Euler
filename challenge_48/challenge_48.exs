@@ -6,8 +6,8 @@ defmodule Mth do
 end
 
 (1..1_000)
-	|> Enum.map(fn n -> Mth.p(n,n) end)
-	|> Enum.reduce(fn a,b -> a + b end)
-	|> Integer.to_string()
-	|> String.slice(-10,10)
-	|> IO.inspect()
+  |> Enum.map(fn n -> Mth.p(n,n) end)
+  |> Enum.reduce(fn a,b -> a + b end)
+  |> Integer.to_string()
+  |> String.slice(-10,10)
+  |> IO.inspect()

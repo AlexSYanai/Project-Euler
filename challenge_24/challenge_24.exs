@@ -1,10 +1,10 @@
 defmodule Permutation do
-	def find(list) do
+  def find(list) do
     permute(list)
      |> Enum.at(999999)
      |> Enum.join()
      |> String.to_integer()
-	end
+  end
 
   def permute([]),  do: [[]]
   def permute(list) do
@@ -13,6 +13,6 @@ defmodule Permutation do
 end
 
 0..9
-	|> Enum.to_list() 
-	|> Permutation.find()
-	|> IO.inspect 
+  |> Enum.to_list()
+  |> Permutation.find()
+  |> IO.inspect

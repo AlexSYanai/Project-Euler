@@ -100,8 +100,8 @@ num = "37107287533902102798797998220837590246510135740250
 53503534226472524250874054075591789781264330331690"
 
 String.split(num,"\n")
-	|> Stream.map((fn x -> String.to_integer(x) end)) 
-	|> Enum.reduce(fn m,n -> m + n end)
-	|> Integer.to_string() 
-	|> String.slice((0..9))
-	|> IO.puts()
+  |> Stream.map((fn x -> String.to_integer(x) end))
+  |> Enum.reduce(fn m,n -> m + n end)
+  |> Integer.to_string()
+  |> String.slice((0..9))
+  |> IO.puts()

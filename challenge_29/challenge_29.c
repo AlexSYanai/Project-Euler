@@ -17,7 +17,7 @@ int main()
     for(b = 2; b <= 100; b++) {
       temp = pow(a,b);
       if (!is_el_in_array(temp, nums)) nums[i] = temp;
-      i++;      
+      i++;
     }
   }
 
@@ -47,4 +47,3 @@ bool is_el_in_array(double val, double *arr)
 
   return false;
 }
-

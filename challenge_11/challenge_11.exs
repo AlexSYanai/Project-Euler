@@ -20,59 +20,59 @@ master_grid_array = "08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08
 01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48"
 
 defmodule GridProduct do
-	def search_grid(grid) do
-		horiz_to_right = grid 
-			|> String.split("\n",trim: true) 
-			|> Enum.map(fn x -> map_list_to_i.(String.split(x,",",trim: true)) end)
+  def search_grid(grid) do
+    horiz_to_right = grid
+      |> String.split("\n",trim: true)
+      |> Enum.map(fn x -> map_list_to_i.(String.split(x,",",trim: true)) end)
 
-		down_right_diag = rev_transpose.(0..19,horiz_to_right)
-		combinations(horiz_to_right,down_right_diag,0,0,0)
-			|> IO.puts
-	end
-
-	def combinations(_,_,outer,_,final) when outer > 19, do: final
-	def combinations(horiz,diag,outer,inner,final) when inner <= 19 do
-		final = find_val(horiz,diag,inner,outer,final)
-		combinations(horiz,diag,outer,inner+1,final)
-	end
-
-	def combinations(horiz,diag,outer,inner,final) when outer <= 19 do
-		final = find_val(horiz,diag,inner,outer,final)
-		combinations(horiz,diag,outer+1,0,final)
-	end
-
-	def find_val(horiz,diag,inner,outer,final) do
-		val_h = find_product_h(horiz,inner,outer)
-		val_d = find_product_d(diag,inner,outer)
-
-		if val_h > final, do: final = val_h
-		if val_d > final, do: final = val_d
-
-		final
-	end
-
-	def find_product_h(grid,col,row) do
-		grid 
-			|> coord_vals([[row,col],[row,col+1],[row,col+2],[row,col+3]]) 
-			|> Enum.reduce(1, fn a,b -> a * b end)
-	end
-
-	def find_product_d(grid,col,row) do
-		grid 
-			|> coord_vals([[row,col],[row+1,col+1],[row+2,col+2],[row+3,col+3]]) 
-			|> Enum.reduce(1, fn a,b -> a * b end)
-	end
-
-  def coord_vals(l,i) do 
-  	i |> Stream.map(fn t_i -> coord_val(l, Enum.at(t_i,0), Enum.at(t_i,1)) end)
+    down_right_diag = rev_transpose.(0..19,horiz_to_right)
+    combinations(horiz_to_right,down_right_diag,0,0,0)
+      |> IO.puts
   end
 
-  def coord_val(a,b,c) do 
-  	a |> Enum.at(b,[]) |> Enum.at(c,0) 
-  end 
+  def combinations(_,_,outer,_,final) when outer > 19, do: final
+  def combinations(horiz,diag,outer,inner,final) when inner <= 19 do
+    final = find_val(horiz,diag,inner,outer,final)
+    combinations(horiz,diag,outer,inner+1,final)
+  end
 
-	def map_list_to_i, do: fn a   -> Enum.map(a, fn b -> String.to_integer(b) end) end
-	def rev_transpose, do: fn a,b -> Enum.map(a, fn x -> Enum.reverse(Enum.map(b, fn y -> Enum.at(y,x) end)) end) end
+  def combinations(horiz,diag,outer,inner,final) when outer <= 19 do
+    final = find_val(horiz,diag,inner,outer,final)
+    combinations(horiz,diag,outer+1,0,final)
+  end
+
+  def find_val(horiz,diag,inner,outer,final) do
+    val_h = find_product_h(horiz,inner,outer)
+    val_d = find_product_d(diag,inner,outer)
+
+    if val_h > final, do: final = val_h
+    if val_d > final, do: final = val_d
+
+    final
+  end
+
+  def find_product_h(grid,col,row) do
+    grid
+      |> coord_vals([[row,col],[row,col+1],[row,col+2],[row,col+3]])
+      |> Enum.reduce(1, fn a,b -> a * b end)
+  end
+
+  def find_product_d(grid,col,row) do
+    grid
+      |> coord_vals([[row,col],[row+1,col+1],[row+2,col+2],[row+3,col+3]])
+      |> Enum.reduce(1, fn a,b -> a * b end)
+  end
+
+  def coord_vals(l,i) do
+    i |> Stream.map(fn t_i -> coord_val(l, Enum.at(t_i,0), Enum.at(t_i,1)) end)
+  end
+
+  def coord_val(a,b,c) do
+    a |> Enum.at(b,[]) |> Enum.at(c,0)
+  end
+
+  def map_list_to_i, do: fn a   -> Enum.map(a, fn b -> String.to_integer(b) end) end
+  def rev_transpose, do: fn a,b -> Enum.map(a, fn x -> Enum.reverse(Enum.map(b, fn y -> Enum.at(y,x) end)) end) end
 end
 
 GridProduct.search_grid(master_grid_array)

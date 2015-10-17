@@ -2,29 +2,29 @@
 
 int factor(int n);
 
-int main(void) 
+int main(void)
 {
-	int i, factor_one, factor_two; 
+	int i, factor_one, factor_two;
 	int sum = 0;
 
-	for (i = 1; i < 10000; i++) { 
-		factor_one = factor(i); 
-		factor_two = factor(factor_one); 
-		if (i != factor_one && i == factor_two) sum += i; 
-	} 
+	for (i = 1; i < 10000; i++) {
+		factor_one = factor(i);
+		factor_two = factor(factor_one);
+		if (i != factor_one && i == factor_two) sum += i;
+	}
 
-	printf("%d\n", sum); 
-	return 0; 
-} 
+	printf("%d\n", sum);
+	return 0;
+}
 
-int factor(int n) 
-{ 
+int factor(int n)
+{
 	int i;
-	int sum = 0; 
+	int sum = 0;
 
-	for (i = 1; i < n; i++) { 
-		if (n % i == 0) sum += i; 
-	} 
+	for (i = 1; i < n; i++) {
+		if (n % i == 0) sum += i;
+	}
 
-	return sum; 
+	return sum;
 }

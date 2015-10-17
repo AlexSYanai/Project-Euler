@@ -2,13 +2,13 @@
 
 int max_val(int a, int b);
 
-int main() 
+int main()
 {
   int i, j, k;
   unsigned long max;
 
   unsigned int tri_arr[15][15] = {
-    { 75 }, 
+    { 75 },
     { 95, 64 },
     { 17, 47, 82 },
     { 18, 35, 87, 10 },
@@ -31,17 +31,17 @@ int main()
   for (i = 2; i < 15; i++) {
     for (j = 0; j <= i; j++) {
       if (j == 0) {
-        tri_arr[i][0] += tri_arr[i-1][0]; 
-      } else if (j == i) { 
-        tri_arr[i][i] += tri_arr[i-1][i-1]; 
+        tri_arr[i][0] += tri_arr[i-1][0];
+      } else if (j == i) {
+        tri_arr[i][i] += tri_arr[i-1][i-1];
       } else {
-        tri_arr[i][j] += max_val(tri_arr[i-1][j-1], tri_arr[i-1][j]); 
+        tri_arr[i][j] += max_val(tri_arr[i-1][j-1], tri_arr[i-1][j]);
       }
     }
   }
 
   max = tri_arr[14][0];
-  for (k = 1; k < 15; k++) { 
+  for (k = 1; k < 15; k++) {
     if (max < tri_arr[14][k]) max = tri_arr[14][k];
   }
 

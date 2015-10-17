@@ -20,39 +20,39 @@ master_grid_array = %q(08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,
 01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48)
 
 class GridProduct
-	attr_accessor :master_grid, :highest_value
-	def initialize(grid)
-		@master_grid   = grid.split(",").map(&:to_i).each_slice(20).to_a
-		@highest_value = 0
-	end
+  attr_accessor :master_grid, :highest_value
+  def initialize(grid)
+    @master_grid   = grid.split(",").map(&:to_i).each_slice(20).to_a
+    @highest_value = 0
+  end
 
-	def horiz(args={})
-		sliced_grid = args[:grid] || master_grid
-		(0..19).each do |row|
-			(0..16).each do |col|
-				temp_value = sliced_grid[row][col] * sliced_grid[row][col+1] * sliced_grid[row][col+2] * sliced_grid[row][col+3]
-				@highest_value = temp_value if temp_value > highest_value
-			end
-		end
-	end
-
-	def diag_down(args={})
+  def horiz(args={})
     sliced_grid = args[:grid] || master_grid
-		(0..16).each do |row|
-			(0..16).each do |col|
-				temp_value = sliced_grid[row][col] * sliced_grid[row+1][col+1] * sliced_grid[row+2][col+2] * sliced_grid[row+3][col+3]
-				@highest_value = temp_value if temp_value > highest_value
-			end
-		end
-	end
+    (0..19).each do |row|
+      (0..16).each do |col|
+        temp_value = sliced_grid[row][col] * sliced_grid[row][col+1] * sliced_grid[row][col+2] * sliced_grid[row][col+3]
+        @highest_value = temp_value if temp_value > highest_value
+      end
+    end
+  end
+
+  def diag_down(args={})
+    sliced_grid = args[:grid] || master_grid
+    (0..16).each do |row|
+      (0..16).each do |col|
+        temp_value = sliced_grid[row][col] * sliced_grid[row+1][col+1] * sliced_grid[row+2][col+2] * sliced_grid[row+3][col+3]
+        @highest_value = temp_value if temp_value > highest_value
+      end
+    end
+  end
 
   def vert
     horiz(grid: master_grid.transpose)
   end
 
-	def diag_up
+  def diag_up
     diag_down(grid: master_grid.transpose.map(&:reverse))
-	end
+  end
 end
 
 euler = GridProduct.new(master_grid_array)
