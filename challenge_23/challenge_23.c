@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-static int abundant_nums[28111] = {0};
+static int abundant_nums[28123] = {0};
 int mark_abundant(int n);
 int check_num(int j);
 
