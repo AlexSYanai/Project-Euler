@@ -1,9 +1,9 @@
 class FindNonAbundant #Started by recycling previous challenges...took a while and was fruitless
   attr_accessor :abundant_array, :summed_abundants
-  attr_reader :final
+  attr_reader   :final
   def initialize(final)
-    @final = final
-    @abundant_array = []
+    @final            = final
+    @abundant_array   = []
     @summed_abundants = []
   end
 
@@ -33,6 +33,8 @@ class FindNonAbundant #Started by recycling previous challenges...took a while a
   end
 
   def summed
+    p summed_abundants.first
+    p summed_abundants.last
     ((1..final).to_a - summed_abundants).inject(:+)
   end
 
