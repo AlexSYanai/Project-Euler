@@ -7,7 +7,7 @@
 template <typename T>
 std::vector<T> Sieve(const T n) {
   const int lim = ceil(sqrt(n));
-  std::vector<T> primes(n, true);
+  std::vector<bool> primes(n, true);
 
   for (int i = 2; i < lim; ++i) {
     if (primes[i]) {
