@@ -6,9 +6,14 @@ defmodule Pandigital do
 	end
 
 	def find(num,prods) when num <= 100 do 
-		if num < 9, do: start = 1234, else: start = 123
+		start = cond do
+			num < 9 ->
+				1234
+			true ->
+				123
+		end
 
-		find(num+1,products(num,prods,start,div(10000,(num-2))))
+		find(num + 1,products(num,prods,start,div(10000,(num - 2))))
 	end
 
 	def products(_,prods,start,lim) 	when start > lim do
@@ -16,10 +21,16 @@ defmodule Pandigital do
 	end
 
 	def products(num,prods,start,lim) when start <= lim do
-		current = num*start
+		current = num * start
 		convert = Integer.to_string(current) <> Integer.to_string(num) <> Integer.to_string(start)
-		if pandigital?(convert), do: prods = [current] ++ prods
-		products(num,prods,start+1,lim)
+		prods 	= cond do
+			pandigital?(convert) ->
+				[current] ++ prods
+			true ->
+				prods
+		end
+
+		products(num,prods,start + 1,lim)
 	end
 
 	def pandigital?(n) do

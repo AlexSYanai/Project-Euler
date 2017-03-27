@@ -13,9 +13,11 @@ defmodule Champernowne do
   end
 
   def find([digit|digits],count,tens,final) when tens <= 1_000_000 do
-    if count == tens do
-      final  = final * String.to_integer(digit)
-      tens   = tens  * 10
+    [final|tens] = cond do
+      count == tens ->
+        [final * String.to_integer(digit)|tens  * 10]
+      true ->
+        [final|tens]
     end
 
     find(digits,count+1,tens,final)

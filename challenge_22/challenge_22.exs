@@ -30,4 +30,4 @@ defmodule Score do
   end
 end
 
-IO.inspect Score.names("challenge_22/challenge_22_names.txt")
+IO.puts Score.names("challenge_22/challenge_22_names.txt")

@@ -2,8 +2,14 @@ defmodule PowerfulDigits do
   def counts(_,_,count,len_bool) when len_bool == false, do: count
 
   def counts(exp,num,count,len_bool) when len_bool == true do
-    if num != 9, do: [num,count] = exps(num,num,exp,count), else: count = count + 1
-    counts(exp+1,num,count,same_len?(9,exp))
+    [num,count] = cond do
+      num != 9 ->
+        exps(num,num,exp,count)
+      true ->
+        [num,count + 1]
+    end
+
+    counts(exp + 1,num,count,same_len?(9,exp))
   end
 
   def exps(num,n,_,count) when n > 9 do
@@ -11,11 +17,27 @@ defmodule PowerfulDigits do
   end
 
   def exps(num,n,exp,count) when n <= 9 do
-    if same_len?(n,exp), do: count = count + 1, else: (if n > num, do: num = n)
-    exps(num,n+1,exp,count)
+    [num|count] = cond do
+      same_len?(n,exp) ->
+        [num|count + 1]
+      true ->
+        greater_than_n?(num,n,count)
+    end
+
+
+    exps(num,n + 1,exp,count)
+  end
+
+  def greater_than_n?(num,n,count) do
+    cond do
+      n > num ->
+        [num|count]
+      true ->
+        [n|count]
+    end
   end
 
   def same_len?(n,exp), do: exp == round(:math.pow(n,exp)) |> to_string |> String.length()
 end
 
-IO.inspect PowerfulDigits.counts(1,1,0,true)
+IO.puts PowerfulDigits.counts(1,1,0,true)

@@ -52,8 +52,7 @@ defmodule TriangleWords do
 
   def find([],count,_), do: count
   def find([word|words],count,tri_nums) when length(words) >= 0 do
-    if triangle?(word,tri_nums), do: count = count + 1
-    find(words,count,tri_nums)
+    find(words,triangle?(word,tri_nums,count),tri_nums)
   end
 
   def triangle_numbers(words) do
@@ -61,7 +60,14 @@ defmodule TriangleWords do
     find(words,0,tri_nums)
   end
 
-  def triangle?(word,tri_nums), do: Enum.member?(tri_nums,word)
+  def triangle?(word,tri_nums,count) do
+    cond do
+      Enum.member?(tri_nums,word) ->
+        count + 1
+      true ->
+        count
+      end
+  end
 end
 
 

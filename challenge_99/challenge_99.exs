@@ -10,7 +10,7 @@ defmodule Exponents do
           |> Enum.with_index
           |> Enum.max_by(fn {y,_} -> y end)
           |> elem(1)
-          |> + 1
+          |> Kernel.+(1)
           |> IO.puts
       {:error,reason} ->
         :file.format_error(reason)

@@ -10,4 +10,4 @@ end
   |> Enum.reduce(fn a,b -> a + b end)
   |> Integer.to_string()
   |> String.slice(-10,10)
-  |> IO.inspect()
+  |> IO.puts

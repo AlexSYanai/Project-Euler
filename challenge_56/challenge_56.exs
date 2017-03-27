@@ -5,7 +5,6 @@ defmodule Mth do
   def p(x, n) when rem(n, 2) != 0, do: x * p(x, n-1)
 end
 
-
 defmodule DigitSum do
   def largest(i,_,largest) when i < 90, do: largest
   def largest(i,j,largest) when j < 90  do

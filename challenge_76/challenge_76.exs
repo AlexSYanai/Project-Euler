@@ -9,13 +9,13 @@ defmodule Summations do
     sums(num+1,way,lim,ad(way,num,vals))
   end
 
-  def ad(a,b,c), do: Dict.put(c,b,(Dict.get(c,b) + Dict.get(c,(b-a))))
+  def ad(a,b,c), do: Map.put(c,b,(Map.get(c,b) + Map.get(c,(b-a))))
 end
 
-vals = Dict.put(Enum.into(Enum.zip(Enum.to_list(0..100),List.duplicate(0,101)),Map.new),0,1)
+vals = Map.put(Enum.into(Enum.zip(Enum.to_list(0..100),List.duplicate(0,101)),Map.new),0,1)
 (1..99)
   |> Enum.to_list()
   |> Summations.count(100,vals)
-  |> Dict.values()
+  |> Map.values()
   |> Enum.max()
-  |> IO.inspect
+  |> IO.puts

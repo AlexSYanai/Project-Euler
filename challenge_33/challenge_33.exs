@@ -18,13 +18,13 @@ defmodule CancellingFractions do
           den_prod = den_prod * j
         end
       end
-
     end
-    find(num_prod,den_prod,i,j+1)
+
+    find(num_prod,den_prod,i,j + 1)
   end
 
   def find(num_prod,den_prod,i,_) when i <= 98 do
-    find(num_prod,den_prod,i+1,11)
+    find(num_prod,den_prod,i + 1,11)
   end
 end
 

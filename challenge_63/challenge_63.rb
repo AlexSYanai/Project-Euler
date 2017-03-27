@@ -23,4 +23,5 @@ while 9.same_digit_length?(exp)   # Upper bound is 9 => 10**x will always
 	end
 	exp += 1
 end
+
 p count

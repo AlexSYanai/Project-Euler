@@ -9,7 +9,6 @@ defmodule Exponents do
           |> Enum.map(fn n -> String.to_integer(n) end)
           |> create_key(cipher)
           |> format_secret()
-          |> IO.puts
       {:error,reason} ->
         :file.format_error(reason)
     end
@@ -38,4 +37,4 @@ defmodule Exponents do
   end
 end
 
-Exponents.input("challenge_59/challenge_59_cipher.txt",["103", "111", "100"])
+IO.puts Exponents.input("challenge_59/challenge_59_cipher.txt",["103", "111", "100"])

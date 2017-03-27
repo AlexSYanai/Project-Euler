@@ -2,7 +2,6 @@ defmodule Pandigital do
   def multiples(current,lim,pandigitals) when current > lim do
     pandigitals
       |> Enum.max()
-      |> IO.puts
   end
 
   def multiples(current,lim,pandigitals) when current <= lim do
@@ -15,7 +14,14 @@ defmodule Pandigital do
 
   def products(start,finish,current,pandigitals) when start <= finish do
     pan = current <> Integer.to_string(start*String.to_integer(current))
-    if pandigital?(pan), do: pandigitals = [pan] ++ pandigitals
+    
+    pandigitals = cond do
+      pandigital?(pan) ->
+        [pan] ++ pandigitals
+      true -> 
+        pandigitals
+    end
+
     products(start+1,finish,pan,pandigitals)
   end
 
@@ -26,4 +32,4 @@ defmodule Pandigital do
   end
 end
 
-Pandigital.multiples(9_000,9_999,[])
+IO.puts Pandigital.multiples(9_000,9_999,[])

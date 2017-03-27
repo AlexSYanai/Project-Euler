@@ -1,16 +1,3 @@
-defmodule MaximumPath do
-  def find([left|_]) when length(left) == 1 do
-    left
-  end
-
-  def find([left|[mid|right]]) when length(left) > 0 do
-    mid = for n <- (0..(length(left)-2)), do: Integer.to_string(new_val(left,mid,n))
-    find([mid|right])
-  end
-
-  def new_val(a,b,c), do: String.to_integer(Enum.at(b,c)) + Enum.max([String.to_integer(Enum.at(a,c)),String.to_integer(Enum.at(a,c+1))])
-end
-
 tri_nums = [
   ["75"],
   ["95", "64"],
@@ -29,4 +16,17 @@ tri_nums = [
   ["04", "62", "98", "27", "23", "9", "70", "98", "73", "93", "38", "53", "60", "04", "23"]
 ]
 
-IO.puts MaximumPath.find(Enum.reverse(tri_nums)) # Wrote using reversed array initially
+defmodule MaximumPath do
+  def find([left|_]) when length(left) == 1 do
+    left
+  end
+
+  def find([left|[mid|right]]) when length(left) > 0 do
+    mid = for n <- (0..(length(left)-2)), do: Integer.to_string(new_val(left,mid,n))
+    find([mid|right])
+  end
+
+  def new_val(a,b,c), do: String.to_integer(Enum.at(b,c)) + Enum.max([String.to_integer(Enum.at(a,c)),String.to_integer(Enum.at(a,c+1))])
+end
+
+IO.puts MaximumPath.find(Enum.reverse(tri_nums))

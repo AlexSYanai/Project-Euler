@@ -9,11 +9,11 @@ defmodule Coins do
     ways(num+1,coin,lim,ad(coin,num,vals))
   end
 
-  def ad(a,b,c), do: Dict.put(c,b,(Dict.get(c,b) + Dict.get(c,(b-a))))
+  def ad(a,b,c), do: Map.put(c,b,(Map.get(c,b) + Map.get(c,(b-a))))
 end
 
-vals = Dict.put(Enum.into(Enum.zip(Enum.to_list(0..200),List.duplicate(0,201)),Map.new),0,1)
+vals = Map.put(Enum.into(Enum.zip(Enum.to_list(0..200),List.duplicate(0,201)),Map.new),0,1)
 Coins.count([1,2,5,10,20,50,100,200],200,vals)
-  |> Dict.values()
+  |> Map.values()
   |> Enum.max()
   |> IO.inspect

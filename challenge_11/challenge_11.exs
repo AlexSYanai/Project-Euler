@@ -23,11 +23,10 @@ defmodule GridProduct do
   def search_grid(grid) do
     horiz_to_right = grid
       |> String.split("\n",trim: true)
-      |> Enum.map(fn x -> map_list_to_i.(String.split(x,",",trim: true)) end)
+      |> Enum.map(fn x -> map_list_to_i(String.split(x,",",trim: true)) end)
 
-    down_right_diag = rev_transpose.(0..19,horiz_to_right)
+    down_right_diag = rev_transpose(0..19,horiz_to_right)
     combinations(horiz_to_right,down_right_diag,0,0,0)
-      |> IO.puts
   end
 
   def combinations(_,_,outer,_,final) when outer > 19, do: final
@@ -45,10 +44,14 @@ defmodule GridProduct do
     val_h = find_product_h(horiz,inner,outer)
     val_d = find_product_d(diag,inner,outer)
 
-    if val_h > final, do: final = val_h
-    if val_d > final, do: final = val_d
-
-    final
+    cond do
+      val_h > final && val_h > val_d ->
+        val_h
+      val_d > final && val_d > val_h ->
+        val_d
+      val_d < final && val_h < final ->
+        final
+    end
   end
 
   def find_product_h(grid,col,row) do
@@ -71,8 +74,13 @@ defmodule GridProduct do
     a |> Enum.at(b,[]) |> Enum.at(c,0)
   end
 
-  def map_list_to_i, do: fn a   -> Enum.map(a, fn b -> String.to_integer(b) end) end
-  def rev_transpose, do: fn a,b -> Enum.map(a, fn x -> Enum.reverse(Enum.map(b, fn y -> Enum.at(y,x) end)) end) end
+  def map_list_to_i(a) do
+    Enum.map(a, fn b -> String.to_integer(b) end)
+  end
+
+  def rev_transpose(a,b) do
+    Enum.map(a, fn x -> Enum.reverse(Enum.map(b, fn y -> Enum.at(y,x) end)) end)
+  end
 end
 
-GridProduct.search_grid(master_grid_array)
+IO.puts GridProduct.search_grid(master_grid_array)
